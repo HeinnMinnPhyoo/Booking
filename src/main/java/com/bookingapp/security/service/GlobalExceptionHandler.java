@@ -16,8 +16,8 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<Map<String, Object>> handleAuthException(RuntimeException ex) {
+    @ExceptionHandler(value = RuntimeException.class)
+    public ResponseEntity handleAuthException(RuntimeException ex) {
         Map<String, Object> body = new HashMap<>();
         body.put("error", "Unauthorized");
         body.put("message", ex.getMessage());
@@ -25,8 +25,8 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(body, HttpStatus.UNAUTHORIZED);
     }
 
-    @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<Map<String, Object>> AuthenticationCredentialsNotFoundException(AuthenticationCredentialsNotFoundException ex) {
+    @ExceptionHandler(AuthenticationCredentialsNotFoundException.class)
+    public ResponseEntity handleAuthenticationCredentialsNotFoundException(AuthenticationCredentialsNotFoundException ex) {
         Map<String, Object> body = new HashMap<>();
         body.put("error", "Unauthorized");
         body.put("message", ex.getMessage());
